@@ -17,7 +17,7 @@ const Orders = () => {
       const response = await axiosInstance.get("/api/orders");
       setOrders(response.data.orders);
     } catch (error) {
-      console.error("Error fetching orders:", error);
+      console.log("Error fetching orders:", error);
     } finally {
       setIsLoading(false);
     }
@@ -27,18 +27,21 @@ const Orders = () => {
     fetchOrders();
   }, []);
 
+ 
+
   const handleCompleteOrder = async (orderId) => {
     try {
-      const response = await axios.put(`/api/orders/${orderId}/complete`);
+      const response = await axiosInstance.put(`/api/orders/${orderId}/complete`);
       if (response.status === 200) {
         alert("Order marked as completed");
         fetchOrders();
       }
     } catch (error) {
-      console.error("Error completing order:", error);
+      console.log("Error completing order:", error.response || error.message);
       alert("Failed to complete order");
     }
   };
+  
 
   const filteredOrders = orders.filter((order) =>
     order.invoiceCode.includes(searchQuery)

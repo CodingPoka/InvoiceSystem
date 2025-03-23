@@ -1,7 +1,42 @@
-
-
-#enviorment variable
-.env
-
-#node modules
+# Node.js dependencies
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build files
+dist/
+build/
+
+# Logs
+logs/
+*.log
+yarn.lock
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# MacOS and system files
+.DS_Store
+Thumbs.db
+
+# Lint and testing
+coverage/
+.eslintcache
+jest.config.js
+.cypress/

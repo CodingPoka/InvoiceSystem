@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [react()],
   server:{
     proxy:{
-      "/api":"http://localhost:8999"
+       "/api":"http://localhost:8999",
+     // "/api":"https://backend-delta-ashen-15.vercel.app"
     }
   }
 })

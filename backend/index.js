@@ -12,10 +12,11 @@ const productRouter=require("./routes/productRoutes");
 
 //use cors
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow only this origin (Vite frontend)
+    origin: ['http://localhost:5173', 'https://frontend-one-opal-16.vercel.app'], // Allow both local and deployed frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true, // Allow cookies to be sent along with requests
-  }));
+    credentials: true,
+}));
+
 //use cookie parser
 
 app.use(cookieParser());

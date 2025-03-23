@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../validation/cookieValidation";
 
@@ -14,11 +14,13 @@ const ServiceList = () => {
     setIsLoading(true);
     try {
       const response = await axiosInstance.get("/api/getProduct");
+      
+      
       if (response.data && response.data.products) {
         setProducts(response.data.products);
       }
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.log("Error fetching products:", error.message);
     } finally {
       setIsLoading(false);
     }
@@ -29,19 +31,21 @@ const ServiceList = () => {
     fetchProducts();
   }, []);
 
+
   // Handle delete product
-  const handleDelete = async (productId) => {
-    if (window.confirm("Are you sure you want to delete this product?")) {
-      try {
-        await axios.delete(`/api/deleteProduct/${productId}`);
-        fetchProducts(); // Refresh the product list after deletion
-        alert("Product deleted successfully");
-      } catch (error) {
-        console.error("Error deleting product:", error);
-        alert("Failed to delete product");
-      }
+const handleDelete = async (productId) => {
+  if (window.confirm("Are you sure you want to delete this product?")) {
+    try {
+      await axiosInstance.delete(`/api/deleteProduct/${productId}`); // Use axiosInstance here
+      fetchProducts(); // Refresh the product list after deletion
+      alert("Product deleted successfully");
+    } catch (error) {
+      console.log("Error deleting product:", error.message);
+      alert("Failed to delete product");
     }
-  };
+  }
+};
+
 
   // Handle edit product
   const handleEdit = (product) => {

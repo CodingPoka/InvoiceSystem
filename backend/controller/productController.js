@@ -31,7 +31,7 @@ exports.addProduct = async (req, res) => {
     // Send success response
     res.status(200).json({ message: "Product added successfully", newProduct });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -43,7 +43,7 @@ exports.deleteProduct = async (req, res) => {
     await productModel.findByIdAndDelete(id);
     res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -62,7 +62,7 @@ exports.updateProduct = async (req, res) => {
 
     res.status(200).json({ message: "Product updated successfully", updatedProduct });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -83,7 +83,7 @@ exports.getProducts = async (req, res) => {
     // Send success response with the products
     res.status(200).json({ message: "Products fetched successfully", products });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -91,39 +91,7 @@ exports.getProducts = async (req, res) => {
 
 const invoiceModel = require("../models/invoiceSchema");
 
-// exports.saveInvoice = async (req, res) => {
-//   try {
-//     const { customerName, phone, address, items, totalAmount } = req.body;
 
-//     // Validate required fields
-//     if (!customerName || !phone || !address || !items || !totalAmount) {
-//       return res.status(400).json({ message: "All fields are required" });
-//     }
-
-//     // Generate a unique 8-digit invoice code
-//     const invoiceCode = Math.floor(10000000 + Math.random() * 90000000).toString();
-
-//     // Create new invoice
-//     const newInvoice = new invoiceModel({
-//       invoiceCode,
-//       customerName,
-//       phone,
-//       address,
-//       items,
-//       totalAmount,
-//       date: new Date(),
-//     });
-
-//     // Save the invoice to the database
-//     await newInvoice.save();
-
-//     // Send success response
-//     res.status(200).json({ message: "Invoice saved successfully", invoice: newInvoice });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
 
 
 
@@ -217,7 +185,7 @@ exports.getDashboardMetrics = async (req, res) => {
       pendingOrders,
     });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -226,7 +194,7 @@ exports.getAllOrders = async (req, res) => {
     const orders = await invoiceModel.find();
     res.status(200).json({ orders });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -249,7 +217,7 @@ exports.markOrderAsCompleted = async (req, res) => {
 
     res.status(200).json({ message: "Order marked as completed", updatedOrder });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 };

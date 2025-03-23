@@ -17,18 +17,28 @@ const Dashboard = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch dashboard metrics
+  
   const fetchDashboardMetrics = async () => {
     try {
-      const response = await axiosInstance.get("/api/dashboard");
-      console.log(response.data); // Check the data structure
-      setMetrics(response.data);
+        const response = await axiosInstance.get("/api/dashboard", { withCredentials: true });
+       // console.log("API Response:", response); // ✅ Check what the backend is returning
+        setMetrics(response.data);
     } catch (error) {
-      console.error("Error fetching dashboard metrics:", error);
+        console.log("Error fetching dashboard metrics:", error);
+
+        if (error.response) {
+            console.log("Error Response Data:", error.response.data);
+            console.log("Error Status Code:", error.response.status);
+            alert(error.response.data.message || "Authorization failed. Please log in again.");
+        } else {
+            alert("Network error. Please check your connection.");
+        }
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
-  };
+};
+
+
 
   // Fetch metrics when the component mounts
   useEffect(() => {
@@ -64,19 +74,19 @@ const Dashboard = () => {
           {/* Total Income */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-2">Total Income</h2>
-            <p className="text-2xl font-bold">${metrics.totalIncome.toFixed(2)}</p>
+            <p className="text-2xl font-bold">${metrics?.totalIncome?.toFixed(2)}</p>
           </div>
 
           {/* Today's Income */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-2">Today's Income</h2>
-            <p className="text-2xl font-bold">${metrics.todayIncome.toFixed(2)}</p>
+            <p className="text-2xl font-bold">${metrics?.todayIncome?.toFixed(2)}</p>
           </div>
 
           {/* This Month's Income */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-2">This Month's Income</h2>
-            <p className="text-2xl font-bold">${metrics.thisMonthIncome.toFixed(2)}</p>
+            <p className="text-2xl font-bold">${metrics?.thisMonthIncome?.toFixed(2)}</p>
           </div>
 
           {/* Completed Orders */}

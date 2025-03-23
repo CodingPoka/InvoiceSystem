@@ -1,16 +1,11 @@
-// import axios from 'axios';
 
-// const axiosInstance = axios.create({
-//   baseURL: 'http://localhost:8999', // Backend API URL
-//   withCredentials: true, // To send cookies (JWT token) with each request
-// });
-
-// export default axiosInstance;
 
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: "http://localhost:8999", // Replace with your backend URL
+    //baseURL: "https://invoicebackend-production-4c90.up.railway.app", 
+    baseURL:  'http://localhost:8999', 
+   
     withCredentials: true, // Send cookies with requests
 });
 

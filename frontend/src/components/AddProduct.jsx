@@ -31,6 +31,8 @@ const AddProduct = () => {
           if (response.status === 200) {
             console.log("Product Added Successfully!");
             alert("Product Added Successfully");
+            //console.log(productName);
+            //console.log(productPrice);
             setProductName('');
             setProductPrice('');
           }

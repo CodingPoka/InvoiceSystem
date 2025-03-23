@@ -19,7 +19,7 @@ const Invoice2 = () => {
   const [isSaved, setIsSaved] = useState(false);
   const [invoiceCode, setInvoiceCode] = useState("");
 
-  const navigate = useNavigate();
+  
 
   // Generate unique 8-digit invoice code
   const generateInvoiceCode = () => {
@@ -34,7 +34,7 @@ const Invoice2 = () => {
           setServices(response.data.products);
         }
       } catch (error) {
-        console.error("Error fetching services:", error);
+        console.log("Error fetching services:", error);
       }
     };
     fetchServices();
@@ -87,7 +87,7 @@ const Invoice2 = () => {
       try {
         const response = await axiosInstance.post("/api/saveInvoice", invoiceData);
         if (response.status === 200) {
-          console.log("Invoice saved successfully:", response.data);
+          console.log("Invoice saved successfully!");
         }
       } catch (error) {
         console.error("Error saving invoice:", error);

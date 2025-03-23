@@ -18,10 +18,7 @@ const Login = ({setIsLoggedIn}) => {
       },{ withCredentials: true })
 
       if(response.status ===200){
-        // alert("Login Successfull");
-        // setIsLoggedIn(true);
-        // navigate("/invoice");
-        // console.log(response.status);
+        
 
         const token = response.data.token;
         if (token) {
